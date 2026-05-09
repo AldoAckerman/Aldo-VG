@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aldo Vargas González — Asesor Académico</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Jost', sans-serif;
+      background: #EFEAE2;
+      min-height: 100vh;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 40px 16px;
+    }
+
+    .page {
+      background: #F7F4EF;
+      max-width: 520px;
+      width: 100%;
+      border-radius: 4px;
+      overflow: hidden;
+      box-shadow: 0 4px 32px rgba(0,0,0,0.08);
+    }
+
+    .top-bar { height: 3px; background: #2C3E2D; }
+    .bottom-bar { height: 3px; background: #2C3E2D; }
+
+    /* HERO */
+    .hero { padding: 48px 40px 36px; border-bottom: 1px solid #DDD8CF; }
+    .avatar {
+      width: 64px; height: 64px; border-radius: 50%;
+      background: #2C3E2D;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 22px; font-weight: 700; color: #F7F4EF;
+      margin-bottom: 20px; letter-spacing: 1px;
+    }
+    .hero-role {
+      font-size: 11px; font-weight: 500; letter-spacing: 2.5px;
+      text-transform: uppercase; color: #A89F93; margin-bottom: 10px;
+    }
+    .hero-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 38px; font-weight: 700; color: #1C1C1A;
+      line-height: 1.05; margin-bottom: 20px;
+    }
+    .hero-name em { font-style: italic; color: #2C3E2D; }
+    .hero-bio {
+      font-size: 14px; font-weight: 300; color: #5A5347;
+      line-height: 1.8; border-left: 2px solid #2C3E2D; padding-left: 16px;
+    }
+
+    /* SECTIONS */
+    .section { padding: 32px 40px; border-bottom: 1px solid #DDD8CF; }
+    .section-label {
+      font-size: 10px; font-weight: 500; letter-spacing: 2.5px;
+      text-transform: uppercase; color: #A89F93; margin-bottom: 20px;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .section-label::after { content: ''; flex: 1; height: 1px; background: #DDD8CF; }
+
+    /* FORMACIÓN */
+    .formation-item { display: flex; flex-direction: column; gap: 4px; }
+    .fi-title { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 600; color: #1C1C1A; }
+    .fi-sub { font-size: 13px; font-weight: 300; color: #7A7168; }
+    .fi-badge {
+      display: inline-block; margin-top: 6px;
+      background: #EFEAE2; border: 1px solid #DDD8CF; border-radius: 2px;
+      font-size: 10px; font-weight: 500; letter-spacing: 1px;
+      text-transform: uppercase; color: #2C3E2D; padding: 4px 10px;
+    }
+
+    /* LOGROS */
+    .logro-item { display: flex; gap: 16px; margin-bottom: 20px; align-items: flex-start; }
+    .logro-item:last-child { margin-bottom: 0; }
+    .logro-icon {
+      width: 38px; height: 38px; border-radius: 50%;
+      background: #EFEAE2; border: 1px solid #DDD8CF;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 16px; flex-shrink: 0; margin-top: 2px;
+    }
+    .logro-title { font-size: 14px; font-weight: 500; color: #1C1C1A; margin-bottom: 4px; }
+    .logro-desc { font-size: 13px; font-weight: 300; color: #7A7168; line-height: 1.6; }
+
+    /* STATS */
+    .stats {
+      display: grid; grid-template-columns: 1fr 1fr 1fr;
+      border: 1px solid #DDD8CF; border-radius: 3px; overflow: hidden;
+    }
+    .stat-cell {
+      padding: 20px 14px; display: flex; flex-direction: column;
+      gap: 6px; border-right: 1px solid #DDD8CF; text-align: center;
+    }
+    .stat-cell:last-child { border-right: none; }
+    .stat-num { font-family: 'Cormorant Garamond', serif; font-size: 32px; font-weight: 700; color: #2C3E2D; line-height: 1; }
+    .stat-label { font-size: 11px; font-weight: 300; color: #A89F93; line-height: 1.4; }
+
+    /* ENFOQUE */
+    .enfoque-text { font-size: 14px; font-weight: 300; color: #5A5347; line-height: 1.9; font-style: italic; }
+    .enfoque-text strong { font-weight: 500; color: #1C1C1A; font-style: normal; }
+
+    /* CTA */
+    .cta-section { padding: 32px 40px; background: #EFEAE2; }
+    .cta-label {
+      font-size: 10px; font-weight: 500; letter-spacing: 2.5px;
+      text-transform: uppercase; color: #A89F93; margin-bottom: 16px;
+    }
+    .cta-row { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
+    .cta-btn {
+      background: #2C3E2D; color: #F7F4EF; border: none; border-radius: 2px;
+      padding: 14px 28px; font-family: 'Jost', sans-serif;
+      font-size: 12px; font-weight: 500; letter-spacing: 2px;
+      text-transform: uppercase; cursor: pointer; text-decoration: none;
+      display: inline-block;
+    }
+    .cta-btn:hover { background: #1e2e1f; }
+    .cta-num { font-size: 15px; font-weight: 300; color: #5A5347; }
+    .cta-num strong { font-weight: 500; color: #1C1C1A; }
+
+    @media (max-width: 480px) {
+      .hero { padding: 36px 24px 28px; }
+      .section { padding: 28px 24px; }
+      .cta-section { padding: 28px 24px; }
+      .hero-name { font-size: 30px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="top-bar"></div>
+
+    <div class="hero">
+      <div class="avatar">AV</div>
+      <div class="hero-role">Asesor Académico · Preparatoria</div>
+      <h1 class="hero-name">Aldo Vargas<br><em>González</em></h1>
+      <p class="hero-bio">Estudiante de Ingeniería Mecatrónica en la Universidad Panamericana, a un semestre de concluir. Asesor con más de 2 años de experiencia trabajando con alumnos de preparatoria en Matemáticas y Física — directo, concreto y enfocado en resultados reales.</p>
+    </div>
+
+    <div class="section">
+      <div class="section-label">Formación</div>
+      <div class="formation-item">
+        <span class="fi-title">Ingeniería Mecatrónica</span>
+        <span class="fi-sub">Universidad Panamericana · 8° semestre</span>
+        <span class="fi-badge">A un semestre de especialidad</span>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-label">Experiencia y logros</div>
+
+      <div class="logro-item">
+        <div class="logro-icon">🎓</div>
+        <div>
+          <div class="logro-title">Cursos propedéuticos — CEDROS</div>
+          <div class="logro-desc">Impartición de cursos de preparación a alumnos de secundaria, trabajando con grupos de hasta 28 estudiantes.</div>
+        </div>
+      </div>
+
+      <div class="logro-item">
+        <div class="logro-icon">📐</div>
+        <div>
+          <div class="logro-title">Asesor académico — Prepa UP</div>
+          <div class="logro-desc">Asesorías a alumnos de preparatoria de la Universidad Panamericana en Matemáticas y Física.</div>
+        </div>
+      </div>
+
+      <div class="logro-item">
+        <div class="logro-icon">🤝</div>
+        <div>
+          <div class="logro-title">Trabajo adjunto con Julio Romo</div>
+          <div class="logro-desc">Colaboración directa con el asesor académico de la Prepa UP, apoyando en el desarrollo y seguimiento de alumnos.</div>
+        </div>
+      </div>
+
+      <div class="logro-item">
+        <div class="logro-icon">🔬</div>
+        <div>
+          <div class="logro-title">Investigación aplicada — Universidad Panamericana</div>
+          <div class="logro-desc">Colaboración con investigador universitario en el análisis de frecuencias para la detección del sonido de latidos cardiacos fetales.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-label">En números</div>
+      <div class="stats">
+        <div class="stat-cell">
+          <span class="stat-num">2+</span>
+          <span class="stat-label">Años de experiencia</span>
+        </div>
+        <div class="stat-cell">
+          <span class="stat-num">28</span>
+          <span class="stat-label">Alumnos por grupo</span>
+        </div>
+        <div class="stat-cell">
+          <span class="stat-num">8°</span>
+          <span class="stat-label">Semestre de ingeniería</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-label">Mi enfoque</div>
+      <p class="enfoque-text">"Enseño <strong>lo que se debe saber</strong>, sin rodeos. Cada sesión va directo al punto — entender el concepto, aplicarlo y resolver. Sin memorizar fórmulas que no se comprenden."</p>
+    </div>
+
+    <div class="cta-section">
+      <div class="cta-label">¿Listo para empezar?</div>
+      <div class="cta-row">
+        <a class="cta-btn" href="https://wa.me/5215510174041?text=Hola%20Aldo%2C%20me%20interesa%20una%20asesor%C3%ADa">Agendar asesoría →</a>
+        <span class="cta-num">📱 <strong>55 1017 4041</strong></span>
+      </div>
+    </div>
+
+    <div class="bottom-bar"></div>
+  </div>
+</body>
+</html>
